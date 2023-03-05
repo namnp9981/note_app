@@ -12,6 +12,7 @@
         android:theme="@style/Theme.NoteApp">
         <activity
             android:name=".features.note.presentation.MainActivity"
+            android:theme="@style/Theme.NoteApp.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

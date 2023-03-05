@@ -1,5 +1,6 @@
 package vn.namnp.noteapp.features.note.presentation.notes.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -8,12 +9,12 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import vn.namnp.noteapp.features.note.domain.model.Note
-
-
 
 @Composable
 fun NoteItem(
@@ -22,7 +23,7 @@ fun NoteItem(
     onDeleteNoteClick: () -> Unit
 ) {
     Box(
-        modifier = modifier,
+        modifier = modifier.background(color = Color(note.color)),
     ) {
         Column(
             modifier = Modifier
@@ -47,11 +48,13 @@ fun NoteItem(
             )
         }
         IconButton(
-            onClick = onDeleteNoteClick
+            onClick = onDeleteNoteClick,
+            modifier = Modifier.align(Alignment.CenterEnd)
         ) {
             Icon(
                 imageVector = Icons.Default.Delete,
-                contentDescription = "Delete note"
+                contentDescription = "Delete note",
+                tint = MaterialTheme.colors.onSurface
             )
         }
     }

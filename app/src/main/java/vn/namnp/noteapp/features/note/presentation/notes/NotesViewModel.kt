@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import vn.namnp.noteapp.features.note.domain.model.Note
 import vn.namnp.noteapp.features.note.domain.use_case.NoteUseCases
 import vn.namnp.noteapp.features.note.domain.util.NoteOrder
+import vn.namnp.noteapp.features.note.domain.util.OrderType
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +26,10 @@ class NotesViewModel @Inject constructor(
     private var recentlyDeletedNote: Note? = null
 
     private var getNotesJob: Job? = null
+
+    init {
+        getNotes(NoteOrder.Date(OrderType.Descending))
+    }
 
     fun onEvent(noteEvent: NoteEvent) {
         when (noteEvent) {
