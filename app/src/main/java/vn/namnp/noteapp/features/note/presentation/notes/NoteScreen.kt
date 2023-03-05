@@ -14,10 +14,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
+import vn.namnp.noteapp.common.testing.ElementTestIdentifier
 import vn.namnp.noteapp.features.note.presentation.notes.components.NoteItem
 import vn.namnp.noteapp.features.note.presentation.notes.components.OrderSection
 import vn.namnp.noteapp.features.note.presentation.screens.Screens
@@ -41,7 +43,10 @@ fun NoteScreen(
                 },
                 backgroundColor = Color.White
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add a note")
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add a note"
+                )
             }
         },
         scaffoldState = scaffoldState
@@ -77,6 +82,7 @@ fun NoteScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
+                        .testTag(ElementTestIdentifier.ORDER_SECTION)
                     ,
                     noteOrder = state.noteOrder,
                     onOrderChange = { newNoteOrder ->
