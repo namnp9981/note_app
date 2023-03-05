@@ -46,7 +46,7 @@ class AddEditNoteViewModel @Inject constructor(
                     noteUseCases.getNote(noteId)?.also { note ->
                         currentNoteId = note.id
                         _noteTitle.value = _noteTitle.value.copy(
-                            text = note.content,
+                            text = note.title,
                             isHintVisible = false
                         )
                         _noteContent.value = _noteContent.value.copy(

@@ -24,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import vn.namnp.noteapp.common.testing.ElementTestIdentifier
 import vn.namnp.noteapp.features.note.domain.model.Note
 import vn.namnp.noteapp.features.note.presentation.add_edit_note.components.NoteTextField
 
@@ -66,7 +67,7 @@ fun AddEditNoteScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
+                Icon(imageVector = Icons.Default.Save, contentDescription = ElementTestIdentifier.SAVE_NOTE)
             }
         },
         scaffoldState = scaffoldState
@@ -122,7 +123,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = titleState.isHintVisible,
                 textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                testTag = ElementTestIdentifier.TITLE_TEXT_FIELD
             )
             Spacer(modifier = Modifier.height(16.dp))
             NoteTextField(
@@ -136,7 +138,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = contentState.isHintVisible,
                 textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                testTag = ElementTestIdentifier.CONTENT_TEXT_FIELD
             )
         }
     }

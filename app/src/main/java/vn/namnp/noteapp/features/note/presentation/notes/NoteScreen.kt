@@ -45,7 +45,7 @@ fun NoteScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add a note"
+                    contentDescription = ElementTestIdentifier.ADD_NOTE
                 )
             }
         },
@@ -69,7 +69,7 @@ fun NoteScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Sort,
-                        contentDescription = "Sort notes"
+                        contentDescription = ElementTestIdentifier.SORT_NOTE
                     )
                 }
             }
