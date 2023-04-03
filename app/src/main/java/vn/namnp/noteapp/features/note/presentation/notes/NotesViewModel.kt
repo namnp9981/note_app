@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -63,6 +64,16 @@ class NotesViewModel @Inject constructor(
 
     private fun getNotes(noteOrder: NoteOrder) {
         getNotesJob?.cancel()
+
+//        getNotesJob = viewModelScope.launch {
+//            noteUseCases.getNotes(noteOrder)
+//                .collectLatest { notes ->
+//                    _state.value = state.value.copy(
+//                        notes = notes,
+//                        noteOrder = noteOrder
+//                    )
+//                }
+//        }
         getNotesJob = noteUseCases.getNotes(noteOrder)
             .onEach { notes ->
                 _state.value = state.value.copy(
