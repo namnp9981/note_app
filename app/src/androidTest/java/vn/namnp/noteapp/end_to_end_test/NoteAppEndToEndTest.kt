@@ -120,6 +120,28 @@ class NoteAppEndToEndTest {
     }
 
     @Test
+    fun saveNewNote_emptyContent_fail() {
+        // Click on FAB to get to add note screen
+        composeRule.onNodeWithContentDescription(ElementTestIdentifier.ADD_NOTE).performClick()
+
+        val titleSampleInput = "Namnpse"
+        val contentSampleInput = ""
+
+        // Enter texts in title and content text fields
+        composeRule
+            .onNodeWithTag(ElementTestIdentifier.TITLE_TEXT_FIELD)
+            .performTextInput(titleSampleInput)
+        composeRule
+            .onNodeWithTag(ElementTestIdentifier.CONTENT_TEXT_FIELD)
+            .performTextInput(contentSampleInput)
+        // Save note
+        composeRule.onNodeWithContentDescription(ElementTestIdentifier.SAVE_NOTE).performClick()
+
+        // check snack bar showing with message `The content of the note can't be empty`
+        composeRule.onNodeWithText("The content of the note can't be empty").assertIsDisplayed()
+    }
+
+    @Test
     fun saveNewNote_editAfterwards() {
         // Click on FAB to get to add note screen
         composeRule.onNodeWithContentDescription(ElementTestIdentifier.ADD_NOTE).performClick()
