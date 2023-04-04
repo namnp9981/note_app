@@ -8,12 +8,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import vn.namnp.noteapp.R
 import vn.namnp.noteapp.common.testing.ElementTestIdentifier
 import vn.namnp.noteapp.di.AppModule
 import vn.namnp.noteapp.features.note.presentation.MainActivity
@@ -98,7 +103,7 @@ class NoteAppEndToEndTest {
     }
 
     @Test
-    fun saveNewNote_fail() {
+    fun saveNewNote_emptyTitle_fail() {
         // Click on FAB to get to add note screen
         composeRule.onNodeWithContentDescription(ElementTestIdentifier.ADD_NOTE).performClick()
 
@@ -115,8 +120,8 @@ class NoteAppEndToEndTest {
         // Save note
         composeRule.onNodeWithContentDescription(ElementTestIdentifier.SAVE_NOTE).performClick()
 
-        // check added note is displayed
-        composeRule.onNodeWithText(titleSampleInput).assertDoesNotExist()
+        // check snack bar showing with message `The title of the note can't be empty`
+        composeRule.onNodeWithText("The title of the note can't be empty").assertIsDisplayed()
     }
 
     @Test
