@@ -98,6 +98,28 @@ class NoteAppEndToEndTest {
     }
 
     @Test
+    fun saveNewNote_fail() {
+        // Click on FAB to get to add note screen
+        composeRule.onNodeWithContentDescription(ElementTestIdentifier.ADD_NOTE).performClick()
+
+        val titleSampleInput = ""
+        val contentSampleInput = "content-title"
+
+        // Enter texts in title and content text fields
+        composeRule
+            .onNodeWithTag(ElementTestIdentifier.TITLE_TEXT_FIELD)
+            .performTextInput(titleSampleInput)
+        composeRule
+            .onNodeWithTag(ElementTestIdentifier.CONTENT_TEXT_FIELD)
+            .performTextInput(contentSampleInput)
+        // Save note
+        composeRule.onNodeWithContentDescription(ElementTestIdentifier.SAVE_NOTE).performClick()
+
+        // check added note is displayed
+        composeRule.onNodeWithText(titleSampleInput).assertDoesNotExist()
+    }
+
+    @Test
     fun saveNewNote_editAfterwards() {
         // Click on FAB to get to add note screen
         composeRule.onNodeWithContentDescription(ElementTestIdentifier.ADD_NOTE).performClick()
